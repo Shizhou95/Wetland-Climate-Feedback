@@ -1,1 +1,1 @@
-# Wetland-Climate-Feedback
+This repository contains the R code used in Ma et al. Temperate wetlands lose climate-cooling capacity under warming for random forest modelling, GWP* CO2-equivalent conversion, radiative forcing analysis, and figure generation.
