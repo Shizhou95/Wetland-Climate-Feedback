@@ -32,7 +32,9 @@ end_savings_ssps <- GHGpertubmerged %>%
 # Combine the results into one data frame
 end_savings <- bind_rows(end_savings_hist, end_savings_ssps)
 
-geocoordinates <- read.csv('/Users/shizhouma/Creed Lab Dropbox/Shizhou Ma/carbon budget analysis/JANallsites_latlong.csv')
+geoinput_path <- "FILL-IN NAME OF GEOCOORDINATES FILE.csv"
+
+geocoordinates <- read.csv(geoinput_path)
 
 end_savings <- end_savings %>%
   left_join(geocoordinates, by = "Wetland.ID")
@@ -87,12 +89,9 @@ plot_data_jittered <- plot_data %>%
 # Convert to sf and match CRS
 points_sf <- st_as_sf(plot_data_jittered, coords = c("Longitude", "Latitude"), crs = 4326)
 # Read the shapefile (Prairie Pothole Region boundary) (adjust the path if needed)
-shapefile_path <- '/Users/shizhouma/Creed Lab Dropbox/Shizhou Ma/carbon budget analysis/pprshapefile'
-
-
-# Transform the points to match the coordinate system of the shapefile
-points_sf <- st_transform(points_sf, crs = st_crs(shape_data))
+shapefile_path <- "FILL IN PATH TO SHAPEFILE FOLDER"
 shape_data <- st_read(shapefile_path)
+# Transform the points to match the coordinate system of the shapefile
 points_sf <- st_transform(points_sf, crs = st_crs(shape_data))
 
 # Split into warmer/cooler sites
